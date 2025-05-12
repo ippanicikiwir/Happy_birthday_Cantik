@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Ucapan Ulang Tahun untuk Lola</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe6f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .card {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover {
+            transform: scale(1.02);
+        }
+        
+        h1 {
+            color: #ff66b2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .message {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #555;
+        }
+        
+        .animals {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        
+        .animal {
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .animal:hover {
+            transform: scale(1.1);
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff66b2'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center center;
+            background-size: contain;
+            animation: float 3s infinite ease-in-out;
+            opacity: 0;
+        }
+        
+        .button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #ff3399;
+            transform: scale(1.05);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .piglet {
+            background-color: #ffb6c1;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .piglet-ear-left, .piglet-ear-right {
+            background-color: #ff99a8;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .piglet-ear-left {
+            top: -10px;
+            left: 10px;
+        }
+        
+        .piglet-ear-right {
+            top: -10px;
+            right: 10px;
+        }
+        
+        .piglet-nose {
+            background-color: #ff7a8c;
+            width: 40px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+            left: 40px;
+        }
+        
+        .piglet-nostril {
+            background-color: #ff5c75;
+            width: 10px;
+            height: 7px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .piglet-nostril.left {
+            top: 12px;
+            left: 10px;
+        }
+        
+        .piglet-nostril.right {
+            top: 12px;
+            right: 10px;
+        }
+        
+        .piglet-eye {
+            background-color: #333;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+        
+        .piglet-eye.left {
+            left: 30px;
+        }
+        
+        .piglet-eye.right {
+            right: 30px;
+        }
+        
+        .capybara {
+            background-color: #c19a6b;
+            width: 120px;
+            height: 100px;
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .capybara-ear-left, .capybara-ear-right {
+            background-color: #a67c52;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+        }
+        
+        .capybara-ear-left {
+            left: 20px;
+        }
+        
+        .capybara-ear-right {
+            right: 20px;
+        }
+        
+        .capybara-nose {
+            background-color: #8d6e63;
+            width: 35px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+            left: 42px;
+        }
+        
+        .capybara-eye {
+            background-color: #333;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+        }
+        
+        .capybara-eye.left {
+            left: 35px;
+        }
+        
+        .capybara-eye.right {
+            right: 35px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .message-text {
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="card" id="card">
+        <h1>Selamat Ulang Tahun, Lola Amaria Hulo!</h1>
+        
+        <div class="message-text" id="message-text">
+            <p class="message">Untuk orang spesial di hatiku...</p>
+        </div>
+        
+        <div class="animals">
+            <div class="animal">
+                <div class="piglet">
+                    <div class="piglet-ear-left"></div>
+                    <div class="piglet-ear-right"></div>
+                    <div class="piglet-eye left"></div>
+                    <div class="piglet-eye right"></div>
+                    <div class="piglet-nose">
+                        <div class="piglet-nostril left"></div>
+                        <div class="piglet-nostril right"></div>
+                    </div>
+                </div>
+                <p>Lola ♥</p>
+            </div>
+            
+            <div class="animal">
+                <div class="capybara">
+                    <div class="capybara-ear-left"></div>
+                    <div class="capybara-ear-right"></div>
+                    <div class="capybara-eye left"></div>
+                    <div class="capybara-eye right"></div>
+                    <div class="capybara-nose"></div>
+                </div>
+                <p>Kamu ♥</p>
+            </div>
+        </div>
+        
+        <button class="button" id="surprise-button">Klik untuk Kejutan!</button>
+        
+        <div class="signature">
+            <p>Dengan cinta dari orang yang sangat menyayangimu ♥</p>
+        </div>
+        
+        <div class="hidden" id="special-message">
+            <p class="message">Di hari spesial ini, aku ingin kamu tahu betapa berartinya kamu bagiku. Seperti piglet yang imut, kamu membawa keceriaan dan kebahagiaan dalam hidupku. Aku harap kita bisa selalu bersama seperti capybara yang setia. Selamat ulang tahun, sayangku!</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tambahkan efek hati mengambang
+            const hearts = document.getElementById('hearts');
+            
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                hearts.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+            
+            setInterval(createHeart, 300);
+            
+            // Kejutan saat tombol diklik
+            const surpriseButton = document.getElementById('surprise-button');
+            const messageText = document.getElementById('message-text');
+            const specialMessage = document.getElementById('special-message');
+            
+            surpriseButton.addEventListener('click', function() {
+                // Ganti pesan
+                messageText.innerHTML = specialMessage.innerHTML;
+                
+                // Animasi konfeti
+                createConfetti();
+                
+                // Animasi karakter
+                const animals = document.querySelectorAll('.animal');
+                animals.forEach(animal => {
+                    animal.style.animation = 'bounce 0.5s ease infinite alternate';
+                });
+                
+                // Ubah teks tombol
+                this.textContent = '♥ Aku Sayang Kamu! ♥';
+                this.style.backgroundColor = '#ff3399';
+            });
+            
+            function createConfetti() {
+                const colors = ['#ff66b2', '#66b3ff', '#99ff99', '#ffff66', '#ff99ff', '#ff9966'];
+                const confettiCount = 200;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.opacity = 1;
+                    confetti.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const animationDuration = (Math.random() * 3 + 2); // 2-5 seconds
+                    
+                    // Animasi jatuh
+                    confetti.animate([
+                        { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                        { transform: `translate(${(Math.random() * 200 - 100)}px, ${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: animationDuration * 1000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.2)'
+                    });
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }
+            }
+            
+            // Animasi karakter saat hover
+            const piglet = document.querySelector('.piglet');
+            piglet.addEventListener('mouseover', function() {
+                piglet.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    piglet.style.transform = 'scale(1)';
+                }, 300);
+            });
+            
+            const capybara = document.querySelector('.capybara');
+            capybara.addEventListener('mouseover', function() {
+                capybara.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    capybara.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Ucapan Ulang Tahun untuk Lola</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #ffe6f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        
+        .card {
+            width: 80%;
+            max-width: 600px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s;
+        }
+        
+        .card:hover {
+            transform: scale(1.02);
+        }
+        
+        h1 {
+            color: #ff66b2;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .message {
+            font-size: 1.2em;
+            margin: 20px 0;
+            color: #555;
+        }
+        
+        .animals {
+            display: flex;
+            justify-content: space-around;
+            margin: 30px 0;
+        }
+        
+        .animal {
+            position: relative;
+            transition: transform 0.3s;
+        }
+        
+        .animal:hover {
+            transform: scale(1.1);
+        }
+        
+        .hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+        }
+        
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff66b2'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E") no-repeat center center;
+            background-size: contain;
+            animation: float 3s infinite ease-in-out;
+            opacity: 0;
+        }
+        
+        .button {
+            background-color: #ff66b2;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        
+        .button:hover {
+            background-color: #ff3399;
+            transform: scale(1.05);
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            opacity: 0;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        .signature {
+            margin-top: 30px;
+            font-style: italic;
+            color: #666;
+        }
+        
+        .piglet {
+            background-color: #ffb6c1;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .piglet-ear-left, .piglet-ear-right {
+            background-color: #ff99a8;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .piglet-ear-left {
+            top: -10px;
+            left: 10px;
+        }
+        
+        .piglet-ear-right {
+            top: -10px;
+            right: 10px;
+        }
+        
+        .piglet-nose {
+            background-color: #ff7a8c;
+            width: 40px;
+            height: 30px;
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+            left: 40px;
+        }
+        
+        .piglet-nostril {
+            background-color: #ff5c75;
+            width: 10px;
+            height: 7px;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .piglet-nostril.left {
+            top: 12px;
+            left: 10px;
+        }
+        
+        .piglet-nostril.right {
+            top: 12px;
+            right: 10px;
+        }
+        
+        .piglet-eye {
+            background-color: #333;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+        }
+        
+        .piglet-eye.left {
+            left: 30px;
+        }
+        
+        .piglet-eye.right {
+            right: 30px;
+        }
+        
+        .capybara {
+            background-color: #c19a6b;
+            width: 120px;
+            height: 100px;
+            border-radius: 50% 50% 40% 40%;
+            position: relative;
+            margin: 20px auto;
+        }
+        
+        .capybara-ear-left, .capybara-ear-right {
+            background-color: #a67c52;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            top: -5px;
+        }
+        
+        .capybara-ear-left {
+            left: 20px;
+        }
+        
+        .capybara-ear-right {
+            right: 20px;
+        }
+        
+        .capybara-nose {
+            background-color: #8d6e63;
+            width: 35px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            top: 40px;
+            left: 42px;
+        }
+        
+        .capybara-eye {
+            background-color: #333;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            position: absolute;
+            top: 30px;
+        }
+        
+        .capybara-eye.left {
+            left: 35px;
+        }
+        
+        .capybara-eye.right {
+            right: 35px;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        .message-text {
+            height: 100px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="card" id="card">
+        <h1>Selamat Ulang Tahun, Lola Amaria Hulo!</h1>
+        
+        <div class="message-text" id="message-text">
+            <p class="message">Untuk orang spesial di hatiku...</p>
+        </div>
+        
+        <div class="animals">
+            <div class="animal">
+                <div class="piglet">
+                    <div class="piglet-ear-left"></div>
+                    <div class="piglet-ear-right"></div>
+                    <div class="piglet-eye left"></div>
+                    <div class="piglet-eye right"></div>
+                    <div class="piglet-nose">
+                        <div class="piglet-nostril left"></div>
+                        <div class="piglet-nostril right"></div>
+                    </div>
+                </div>
+                <p>Lola ♥</p>
+            </div>
+            
+            <div class="animal">
+                <div class="capybara">
+                    <div class="capybara-ear-left"></div>
+                    <div class="capybara-ear-right"></div>
+                    <div class="capybara-eye left"></div>
+                    <div class="capybara-eye right"></div>
+                    <div class="capybara-nose"></div>
+                </div>
+                <p>Kamu ♥</p>
+            </div>
+        </div>
+        
+        <button class="button" id="surprise-button">Klik untuk Kejutan!</button>
+        
+        <div class="signature">
+            <p>Dengan cinta dari orang yang sangat menyayangimu ♥</p>
+        </div>
+        
+        <div class="hidden" id="special-message">
+            <p class="message">Di hari spesial ini, aku ingin kamu tahu betapa berartinya kamu bagiku. Seperti piglet yang imut, kamu membawa keceriaan dan kebahagiaan dalam hidupku. Aku harap kita bisa selalu bersama seperti capybara yang setia. Selamat ulang tahun, sayangku!</p>
+        </div>
+    </div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tambahkan efek hati mengambang
+            const hearts = document.getElementById('hearts');
+            
+            function createHeart() {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                hearts.appendChild(heart);
+                
+                setTimeout(() => {
+                    heart.remove();
+                }, 4000);
+            }
+            
+            setInterval(createHeart, 300);
+            
+            // Kejutan saat tombol diklik
+            const surpriseButton = document.getElementById('surprise-button');
+            const messageText = document.getElementById('message-text');
+            const specialMessage = document.getElementById('special-message');
+            
+            surpriseButton.addEventListener('click', function() {
+                // Ganti pesan
+                messageText.innerHTML = specialMessage.innerHTML;
+                
+                // Animasi konfeti
+                createConfetti();
+                
+                // Animasi karakter
+                const animals = document.querySelectorAll('.animal');
+                animals.forEach(animal => {
+                    animal.style.animation = 'bounce 0.5s ease infinite alternate';
+                });
+                
+                // Ubah teks tombol
+                this.textContent = '♥ Aku Sayang Kamu! ♥';
+                this.style.backgroundColor = '#ff3399';
+            });
+            
+            function createConfetti() {
+                const colors = ['#ff66b2', '#66b3ff', '#99ff99', '#ffff66', '#ff99ff', '#ff9966'];
+                const confettiCount = 200;
+                
+                for (let i = 0; i < confettiCount; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = -10 + 'px';
+                    confetti.style.width = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.height = (Math.random() * 8 + 5) + 'px';
+                    confetti.style.opacity = 1;
+                    confetti.style.transform = 'rotate(' + (Math.random() * 360) + 'deg)';
+                    
+                    document.body.appendChild(confetti);
+                    
+                    const animationDuration = (Math.random() * 3 + 2); // 2-5 seconds
+                    
+                    // Animasi jatuh
+                    confetti.animate([
+                        { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                        { transform: `translate(${(Math.random() * 200 - 100)}px, ${window.innerHeight}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: animationDuration * 1000,
+                        easing: 'cubic-bezier(0.1, 0.8, 0.9, 0.2)'
+                    });
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, animationDuration * 1000);
+                }
+            }
+            
+            // Animasi karakter saat hover
+            const piglet = document.querySelector('.piglet');
+            piglet.addEventListener('mouseover', function() {
+                piglet.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    piglet.style.transform = 'scale(1)';
+                }, 300);
+            });
+            
+            const capybara = document.querySelector('.capybara');
+            capybara.addEventListener('mouseover', function() {
+                capybara.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    capybara.style.transform = 'scale(1)';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
